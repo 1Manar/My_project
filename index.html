@@ -1,0 +1,44 @@
+<!doctype html>
+
+	<head>
+        <title>Speech to Text</title>
+	</head>
+
+	<body>
+        <script>
+		    function SpeechToText() {
+		        var output = document.getElementById("output");
+		        var step = document.getElementById("steps");
+
+                var SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
+                var recognition = new SpeechRecognition();
+                recognition.lang = "ar";
+
+
+                recognition.addEventListener('start', function() {
+                    step.innerHTML = "Please speak...";
+                });
+
+                recognition.addEventListener('speechend', function() {
+                    step.innerHTML = "stopped listening";
+                    recognition.stop();
+                });
+
+                recognition.addEventListener('result', function(event) {
+                    var transcript = event.results[0][0].transcript;
+                    output.innerHTML = transcript;
+                    output.classList.remove("hide");
+                });
+    
+                 recognition.start();
+	        }
+		</script>
+
+        <div align ="center">
+            <button type="button" onclick="SpeechToText()">Speech to Text</button>
+            <p id = "steps">Click on the button and speak</p>
+            <div id="output" class="hide"></div>
+        </div>
+	</body>
+</html>
+  
