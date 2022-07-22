@@ -1,2 +1,2 @@
 # My_project
-task1
+this is my task1:steps to setup esp32 and voice to text
